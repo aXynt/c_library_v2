@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<mavlink>
+  <include>ardupilotmega.xml</include>
+  <version>1</version>
+  <dialect>1</dialect>
+  <enums>
+    <enum name="CAMERA_AI_IDENTIFICATION_CAP_FLAGS" bitmask="true">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Camera AI identification capability flags (Bitmap)</description>
+      <entry value="1" name="CAMERA_AI_IDENTIFICATION_CAP_FLAGS_OBJECT_DETECTION">
+        <description>Camera supports object detection</description>
+      </entry>
+    </enum>
+    <enum name="MAV_CMD">
+      <entry value="15000" name="MAV_CMD_SET_CAMERA_AI_IDENTIFICATION" hasLocation="false" isDestination="false">
+        <wip/>
+        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+        <description>Enable or disable AI identification on the camera. The camera must respond with CAMERA_AI_IDENTIFICATION_STATUS when the AI identification state changes.</description>
+        <param index="1" label="Target Camera ID" minValue="0" maxValue="255" increment="1">Target camera ID. 7 to 255: MAVLink camera component id. 1 to 6 for cameras attached to the autopilot, which don't have a distinct component id. 0: all cameras. This is used to target specific autopilot-connected cameras. It is also used to target specific cameras when the MAV_CMD is used in a mission.</param>
+        <param index="2" label="Enable" minValue="0" maxValue="1" increment="1">AI identification enable/disable (o for disable, 1 for enable)</param>
+        <param index="3" reserved="true" default="NaN"/>
+        <param index="4" reserved="true" default="NaN"/>
+        <param index="7" reserved="true" default="NaN"/>
+      </entry>
+      <entry value="15001" name="MAV_CMD_NAV_VISNAV" hasLocation="false" isDestination="true">
+        <wip/>
+        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+        <description>Navigate in visnav mode.</description>
+        <param index="1" label="Relative Bearing" units="deg">Desired bearing</param>
+        <param index="2" label="Delta Pitch" units="deg">Delta Pitch = New Desired Pitch - Current Pitch</param>
+        <param index="3">Empty</param>
+        <param index="4">Empty</param>
+        <param index="5">Empty</param>
+        <param index="6">Empty</param>
+        <param index="7">Empty</param>
+      </entry>
+    </enum>
+  </enums>
+  <messages>
+    <message id="16000" name="CAMERA_AI_IDENTIFICATION_INFORMATION">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Information about the AI identification capabilities of the camera.</description>
+      <field type="uint16_t" name="cap_flags" enum="CAMERA_AI_IDENTIFICATION_CAP_FLAGS">Bitmap of camera AI identification capability flags.</field>
+      <extensions/>
+      <field type="uint8_t" name="camera_device_id" default="0" minValue="0" maxValue="6">Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).</field>
+    </message>
+    <message id="16001" name="CAMERA_AI_IDENTIFICATION_STATUS">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Status of the AI identification feature.</description>
+      <field type="uint8_t" name="enable">AI identification enable/disable (0 for disable, 1 for enable)</field>
+      <extensions/>
+      <field type="uint8_t" name="camera_device_id" default="0" minValue="0" maxValue="6">Camera id of a non-MAVLink camera attached to an autopilot (1-6).  0 if the component is a MAVLink camera (with its own component id).</field>
+    </message>
+  </messages>
+</mavlink>
+

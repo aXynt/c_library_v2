@@ -12,6 +12,7 @@ extern "C" {
 
 #ifndef MAVLINK_TEST_ALL
 #define MAVLINK_TEST_ALL
+static void mavlink_test_ArknX(uint8_t, uint8_t, mavlink_message_t *last_msg);
 static void mavlink_test_ardupilotmega(uint8_t, uint8_t, mavlink_message_t *last_msg);
 static void mavlink_test_ASLUAV(uint8_t, uint8_t, mavlink_message_t *last_msg);
 static void mavlink_test_common(uint8_t, uint8_t, mavlink_message_t *last_msg);
@@ -31,6 +32,7 @@ static void mavlink_test_all(uint8_t, uint8_t, mavlink_message_t *last_msg);
 
 static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
+    mavlink_test_ArknX(system_id, component_id, last_msg);
     mavlink_test_ardupilotmega(system_id, component_id, last_msg);
     mavlink_test_ASLUAV(system_id, component_id, last_msg);
     mavlink_test_common(system_id, component_id, last_msg);
@@ -50,6 +52,7 @@ static void mavlink_test_all(uint8_t system_id, uint8_t component_id, mavlink_me
 }
 #endif
 
+#include "../ArknX/testsuite.h"
 #include "../ardupilotmega/testsuite.h"
 #include "../ASLUAV/testsuite.h"
 #include "../common/testsuite.h"

@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <mavlink>
+  <!-- ArknX.xml range of IDs:
+    messages: 15000 - 16999
+    commands: 15000 - 16999
+  -->
+  <include>ArknX.xml</include>
   <!-- ardupilotmega.xml range of IDs:
     messages: 11000 - 11999
     commands: 42000 - 42999
